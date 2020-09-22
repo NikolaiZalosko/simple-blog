@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Simple Blog - Admin panel</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="/webjars/font-awesome/5.14.0/css/all.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="css/index.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Simple Blog</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="/">Home </a></li>
+					<li class="nav-item active"><a class="nav-link" href="#">Admin<span
+							class="sr-only">(current)</span> panel
+					</a></li>
+					<li class="nav-item"><a href="/logout" class="nav-link">
+							<button class="btn btn-secondary btn-sm">Log out</button>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-8">
+				<h1 class="my-4">User list</h1>
+				<table class="table mb-4">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Username</th>
+							<th scope="col">Register date</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : ${users}">
+							<td th:text="${user.id}">Id</td>
+							<td th:text="${user.username}">Username</td>
+							<td th:text="${user.registerDate}">Register date</td>
+							<td>
+								<form th:action="@{/admin/deleteUser(id=${user.id})}"
+									th:method="post">
+
+									<button type="submit" class="btn btn-default">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Created by Nikolay Zalosko
+				in 2020</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
